@@ -25,10 +25,12 @@ class Router
         $method = strtoupper($method);
 
         foreach ($this->routes as $route) {
-            if (!preg_match("#^{$route["path"]}$#", $path) ||
-                $method !== $route["method"]) {
-                    continue;
-                }
+            if (
+                !preg_match("#^{$route["path"]}$#", $path) ||
+                $method !== $route["method"]
+            ) {
+                continue;
+            }
 
             [$class, $function] = $route["controller"];
             $controllerInstance = new $class;

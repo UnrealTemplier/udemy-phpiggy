@@ -19,6 +19,14 @@ class Router
         ];
     }
 
+    public function dispatch(string $path, string $method)
+    {
+        $path = $this->normalizePath($path);
+        $method = strtoupper($method);
+
+        echo $path . $method;
+    }
+
     private function normalizePath(string $path): string
     {
         $path = trim($path);

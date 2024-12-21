@@ -8,5 +8,7 @@ use Framework\App;
 
 $app = new App();
 $app->get("/");
+
 dd($app);
+
 return $app;

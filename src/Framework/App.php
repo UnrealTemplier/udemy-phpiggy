@@ -17,4 +17,9 @@ class App
     {
         echo "Application is runnning!";
     }
+    
+    public function add(string $path) 
+    {
+        $this->router->add($path);    
+    }
 }

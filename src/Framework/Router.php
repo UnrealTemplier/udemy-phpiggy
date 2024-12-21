@@ -24,7 +24,16 @@ class Router
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
 
-        echo $path . $method;
+        foreach ($this->routes as $route) {
+            if (!preg_match("#^{$route["path"]}$#", $path) ||
+                $method !== $route["method"]) {
+                    continue;
+                }
+
+            [$class, $function] = $route["controller"];
+            $controllerInstance = new $class;
+            $controllerInstance->{$function}();
+        }
     }
 
     private function normalizePath(string $path): string

@@ -8,8 +8,9 @@ class TemplateEngine
 {
     public function __construct(private string $basePath) {}
 
-    public function render(string $template)
+    public function render(string $template, array $data = [])
     {
+        extract($data);
         include "{$this->basePath}/{$template}";
     }
 }

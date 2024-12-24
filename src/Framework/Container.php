@@ -27,12 +27,12 @@ class Container
 
         $contructor = $reflectionClass->getConstructor();
         if (!$contructor) {
-            return new $className;
+            return new $className();
         }
 
         $params = $contructor->getParameters();
         if (count($params) === 0) {
-            return new $className;
+            return new $className();
         }
 
         $dependencies = [];

@@ -16,7 +16,7 @@ class Router
         $this->routes[] = [
             "path" => $path,
             "method" => strtoupper($method),
-            "controller" => $controller
+            "controller" => $controller,
         ];
     }
 
@@ -36,7 +36,7 @@ class Router
             [$class, $function] = $route["controller"];
             $controllerInstance = $container ?
                 $container->resolve($class) :
-                new $class;
+                new $class();
 
             $action = fn() => $controllerInstance->{$function}();
 

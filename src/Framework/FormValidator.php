@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Framework;
 
-use App\Services\ValidatorService;
 use Framework\Contracts\RuleInterface;
 use Framework\Exceptions\ValidationException;
 

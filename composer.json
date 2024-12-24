@@ -2,7 +2,6 @@
     "name": "unrealtemplier/phpiggy",
     "description": "A PHP app for tracking expenses.",
     "type": "project",
-    "require": {},
     "autoload": {
         "psr-4": {
             "Framework\\": "src/Framework",
@@ -12,5 +11,8 @@
             "src/App/Config/Routes.php",
             "src/App/Config/Middleware.php"
         ]
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.65"
     }
 }

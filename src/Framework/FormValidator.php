@@ -22,13 +22,20 @@ class FormValidator
 
         foreach ($fields as $fieldName => $rules) {
             foreach ($rules as $ruleAlias) {
+                $ruleParams = [];
+
+                if (str_contains($ruleAlias, ":")) {
+                    [$ruleAlias, $ruleParams] = explode(":", $ruleAlias);
+                    $ruleParams = explode(",", $ruleParams);
+                }
+
                 $ruleValidator = $this->rules[$ruleAlias];
 
-                if ($ruleValidator->validate($formData, $fieldName, [])) {
+                if ($ruleValidator->validate($formData, $fieldName, $ruleParams)) {
                     continue;
                 }
 
-                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, []);
+                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams);
             }
         }
 

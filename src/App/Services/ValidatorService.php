@@ -6,6 +6,7 @@ namespace App\Services;
 
 use Framework\Rules\RequiredRule;
 use Framework\FormValidator;
+use Framework\Rules\EmailRule;
 
 class ValidatorService
 {
@@ -15,12 +16,13 @@ class ValidatorService
     {
         $this->validator = new FormValidator();
         $this->validator->addRule("required", new RequiredRule());
+        $this->validator->addRule("email", new EmailRule());
     }
 
     public function validateRegister(array $formData)
     {
         $this->validator->validate($formData, [
-            "email"             => ["required"],
+            "email"             => ["required", "email"],
             "age"               => ["required"],
             "country"           => ["required"],
             "socialMediaURL"    => ["required"],

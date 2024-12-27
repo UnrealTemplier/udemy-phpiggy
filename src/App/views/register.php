@@ -8,6 +8,7 @@
       <input
         name="email"
         type="email"
+        value="<?php echo e($oldFormData["email"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder="john@example.com"
       />
@@ -27,6 +28,7 @@
       <input
         name="age"
         type="number"
+        value="<?php echo e($oldFormData["age"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
@@ -47,10 +49,21 @@
         name="country"
         class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       >
-        <option value="USA">USA</option>
-        <option value="Canada">Canada</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Invalid">Invalid Country</option>
+        <option value="USA" 
+          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "USA" ? "selected" : "") : ""); ?>
+        >USA</option>
+
+        <option value="Canada" 
+          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Canada" ? "selected" : "") : ""); ?>
+        >Canada</option>
+
+        <option value="Mexico"
+          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Mexico" ? "selected" : "") : ""); ?>
+        >Mexico</option>
+
+        <option value="Invalid"
+            <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Invalid" ? "selected" : "") : ""); ?>
+        >Invalid Country</option>
       </select>
       <?php if (array_key_exists("country", $errors)): ?>
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
@@ -68,6 +81,7 @@
       <input
         name="socialMediaURL"
         type="text"
+        value="<?php echo e($oldFormData["socialMediaURL"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
@@ -128,6 +142,7 @@
               name="tos"
               class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
               type="checkbox"
+              <?php echo e($oldFormData["tos"] ?? false ? "checked" : ""); ?>
             />
             <span class="ml-2">I accept the terms of service.</span>
           </label>

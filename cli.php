@@ -14,11 +14,24 @@ $config = [
 ];
 $username = "root";
 $password = "";
+
 $db = new Database($driver, $config, $username, $password);
 
-$where = "Hats";
-$query = "SELECT * FROM products WHERE name=:name";
-$stmt = $db->connection->prepare($query);
-$stmt->bindValue("name", $where, PDO::PARAM_STR);
-$stmt->execute();
-var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
+try {
+    $db->connection->beginTransaction();
+
+    $db->connection->query("INSERT INTO products VALUES(99, 'Gloves');");
+    // $db->connection->query("DELETE FROM products WHERE id=99");
+
+    $where = "Gloves";
+    $query = "SELECT * FROM products WHERE name=:name";
+    $stmt = $db->connection->prepare($query);
+    $stmt->bindValue("name", $where, PDO::PARAM_STR);
+    $stmt->execute();
+    var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
+
+    $db->connection->commit();
+} catch (Exception $e) {
+    $db->connection->rollBack();
+    echo "Transation failed.";
+}

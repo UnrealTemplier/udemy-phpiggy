@@ -16,6 +16,9 @@ $username = "root";
 $password = "";
 $db = new Database($driver, $config, $username, $password);
 
-if ($db) {
-    echo "Connected to the database.";
-}
+$where = "Hats";
+$query = "SELECT * FROM products WHERE name=:name";
+$stmt = $db->connection->prepare($query);
+$stmt->bindValue("name", $where, PDO::PARAM_STR);
+$stmt->execute();
+var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));

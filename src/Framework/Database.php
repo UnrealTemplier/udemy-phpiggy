@@ -22,4 +22,9 @@ class Database
             die("Unable to connect to the database.");
         }
     }
+
+    public function query(string $query)
+    {
+        $this->connection->query($query);
+    }
 }

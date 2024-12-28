@@ -7,7 +7,7 @@ use App\Services\ValidatorService;
 use Framework\{TemplateEngine, Database};
 
 return [
-    TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW),
+    TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEWS),
     ValidatorService::class => fn() => new ValidatorService(),
     Database::class => fn() => new Database("mysql", [
         "host"      => "localhost",

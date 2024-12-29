@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 use App\Config\Paths;
 use App\Services\UserService;
-use App\Services\ValidatorService;
+use App\Services\FormValidationService;
 use Framework\{Container, TemplateEngine, Database};
 
 return [
     TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEWS),
-    ValidatorService::class => fn() => new ValidatorService(),
+    FormValidationService::class => fn() => new FormValidationService(),
     Database::class => fn() => new Database($_ENV["DB_DRIVER"], [
         "host"      => $_ENV["DB_HOST"],
         "port"      => $_ENV["DB_PORT"],

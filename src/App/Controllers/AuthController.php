@@ -27,6 +27,7 @@ class AuthController
     {
         $this->formValidationService->validateRegister($_POST);
         $this->userService->checkEmailTaken($_POST["email"]);
+        $this->userService->create($_POST);
         redirectTo("/");
     }
 }

@@ -10,7 +10,7 @@ use PDOStatement;
 
 class Database
 {
-    public PDO $connection;
+    private PDO $connection;
     private PDOStatement $stmt;
 
     public function __construct($driver, $config, $username, $password)

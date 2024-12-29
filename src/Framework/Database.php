@@ -6,10 +6,12 @@ namespace Framework;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class Database
 {
     public PDO $connection;
+    private PDOStatement $stmt;
 
     public function __construct($driver, $config, $username, $password)
     {
@@ -23,8 +25,9 @@ class Database
         }
     }
 
-    public function query(string $query)
+    public function query(string $query, array $params = [])
     {
-        $this->connection->query($query);
+        $this->stmt = $this->connection->prepare($query);
+        $this->stmt->execute($params);
     }
 }

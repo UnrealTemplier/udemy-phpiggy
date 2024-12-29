@@ -54,7 +54,7 @@ class Container
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 
-    protected function getDependency(string $id)
+    public function getDependency(string $id)
     {
         if (!array_key_exists($id, $this->definitions)) {
             throw new ContainerException("Class {$id} does not exist in the container.");
@@ -65,7 +65,7 @@ class Container
         }
 
         $factoryFunction = $this->definitions[$id];
-        $dependency = $factoryFunction();
+        $dependency = $factoryFunction($this);
 
         $this->resolved[$id] = $dependency;
 

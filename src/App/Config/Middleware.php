@@ -7,7 +7,7 @@ namespace App\Config;
 use App\Middleware\{FlashMiddleware, SessionMiddleware, TemplateDataMiddleware, ValidationExceptionMiddleware};
 use Framework\App;
 
-function registerMiddleware(App $app)
+function registerMiddleware(App $app): void
 {
     $app->addMiddleware(TemplateDataMiddleware::class);
     $app->addMiddleware(ValidationExceptionMiddleware::class);

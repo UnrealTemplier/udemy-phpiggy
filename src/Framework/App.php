@@ -20,24 +20,24 @@ class App
         }
     }
 
-    public function run()
+    public function run(): void
     {
         $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
         $method = $_SERVER["REQUEST_METHOD"];
         $this->router->dispatch($path, $method, $this->container);
     }
 
-    public function get(string $path, array $controller)
+    public function get(string $path, array $controller): void
     {
         $this->router->add("GET", $path, $controller);
     }
 
-    public function post(string $path, array $controller)
+    public function post(string $path, array $controller): void
     {
         $this->router->add("POST", $path, $controller);
     }
 
-    public function addMiddleware(string $middleware)
+    public function addMiddleware(string $middleware): void
     {
         $this->router->addMiddleware($middleware);
     }

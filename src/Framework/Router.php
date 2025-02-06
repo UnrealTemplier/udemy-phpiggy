@@ -9,7 +9,7 @@ class Router
     private array $routes = [];
     private array $middlewares = [];
 
-    public function add(string $method, string $path, array $controller)
+    public function add(string $method, string $path, array $controller): void
     {
         $path = $this->normalizePath($path);
 
@@ -20,7 +20,7 @@ class Router
         ];
     }
 
-    public function dispatch(string $path, string $method, Container $container = null)
+    public function dispatch(string $path, string $method, Container $container = null): void
     {
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
@@ -53,7 +53,7 @@ class Router
         }
     }
 
-    public function addMiddleware(string $middleware)
+    public function addMiddleware(string $middleware): void
     {
         $this->middlewares[] = $middleware;
     }

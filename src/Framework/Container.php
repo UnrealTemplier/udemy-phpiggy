@@ -13,7 +13,7 @@ class Container
     private array $definitions = [];
     private array $resolved = [];
 
-    public function addDefinitions(array $newDefinitions)
+    public function addDefinitions(array $newDefinitions): void
     {
         $this->definitions = [...$this->definitions, ...$newDefinitions];
     }

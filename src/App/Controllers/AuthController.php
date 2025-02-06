@@ -16,14 +16,14 @@ class AuthController
         private UserService $userService,
     ) {}
 
-    public function registerView()
+    public function registerView(): void
     {
         echo $this->view->render("register.php", [
             "title" => "Register",
         ]);
     }
 
-    public function register()
+    public function register(): void
     {
         $this->formValidationService->validateRegister($_POST);
         $this->userService->checkEmailTaken($_POST["email"]);
@@ -31,14 +31,14 @@ class AuthController
         redirectTo("/");
     }
 
-    public function loginView()
+    public function loginView(): void
     {
         echo $this->view->render("login.php", [
             "title" => "Login",
         ]);
     }
 
-    public function login()
+    public function login(): void
     {
         $this->formValidationService->validateLogin($_POST);
         $this->userService->login($_POST);

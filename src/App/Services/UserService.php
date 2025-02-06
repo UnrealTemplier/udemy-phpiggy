@@ -20,7 +20,7 @@ class UserService
      *
      * @throws ValidationException Throws an exception if email is already taken.
      */
-    public function checkEmailTaken(string $email)
+    public function checkEmailTaken(string $email): void
     {
         $emailCount = $this->db->query(
             "SELECT COUNT(*) FROM users WHERE email=:email",
@@ -34,7 +34,7 @@ class UserService
         }
     }
 
-    public function create(array $formData)
+    public function create(array $formData): void
     {
         $password = password_hash($formData["password"], PASSWORD_BCRYPT, ["cost" => 12]);
 
@@ -51,7 +51,7 @@ class UserService
         );
     }
 
-    public function login(array $formData)
+    public function login(array $formData): void
     {
         $user = $this->db->query("SELECT * FROM users WHERE email=:email", [
             "email" => $formData["email"],

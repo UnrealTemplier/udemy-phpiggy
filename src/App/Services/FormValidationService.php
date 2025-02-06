@@ -22,7 +22,7 @@ class FormValidationService
         $this->validator->addRule("match", new MatchRule());
     }
 
-    public function validateRegister(array $formData)
+    public function validateRegister(array $formData): void
     {
         $this->validator->validate($formData, [
             "email"             => ["required", "email"],
@@ -35,7 +35,7 @@ class FormValidationService
         ]);
     }
 
-    public function validateLogin(array $formData)
+    public function validateLogin(array $formData): void
     {
         $this->validator->validate($formData, [
             "email"             => ["required", "email"],

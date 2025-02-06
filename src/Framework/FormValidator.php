@@ -11,12 +11,12 @@ class FormValidator
 {
     private array $rules = [];
 
-    public function addRule(string $alias, RuleInterface $rule)
+    public function addRule(string $alias, RuleInterface $rule): void
     {
         $this->rules[$alias] = $rule;
     }
 
-    public function validate(array $formData, array $fields)
+    public function validate(array $formData, array $fields): void
     {
         $errors = [];
 

@@ -9,7 +9,7 @@ use Framework\Contracts\MiddlewareInterface;
 
 class SessionMiddleware implements MiddlewareInterface
 {
-    public function process(callable $next)
+    public function process(callable $next): void
     {
         if (session_status() === PHP_SESSION_ACTIVE) {
             throw new SessionException("Session already started.");

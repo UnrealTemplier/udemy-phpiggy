@@ -10,7 +10,7 @@ class AboutController
 {
     public function __construct(private TemplateEngine $view) {}
 
-    public function about()
+    public function about(): void
     {
         echo $this->view->render("about.php", [
             "title" => "About"

@@ -37,18 +37,18 @@ class Container
 
         $dependencies = [];
         foreach ($params as $param) {
-            $name = $param->getName();
-            $type = $param->getType();
+            $paramName = $param->getName();
+            $paramType = $param->getType();
 
-            if (!$type) {
-                throw new ContainerException("Failed to resolve class {$className} because parameter {$name} has no type hint.");
+            if (!$paramType) {
+                throw new ContainerException("Failed to resolve class {$className} because parameter {$paramName} has no type hint.");
             }
 
-            if (!($type instanceof ReflectionNamedType) || $type->isBuiltin()) {
-                throw new ContainerException("Failed to resolve class {$className} because parameter {$name} has invalid type.");
+            if (!($paramType instanceof ReflectionNamedType) || $paramType->isBuiltin()) {
+                throw new ContainerException("Failed to resolve class {$className} because parameter {$paramName} has invalid type.");
             }
 
-            $dependencies[] = $this->getDependency($type->getName());
+            $dependencies[] = $this->getDependency($paramType->getName());
         }
 
         return $reflectionClass->newInstanceArgs($dependencies);

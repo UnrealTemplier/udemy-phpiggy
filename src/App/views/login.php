@@ -4,12 +4,12 @@
   <form method="POST" class="grid grid-cols-1 gap-6">
     <label class="block">
       <span class="text-gray-700">Email address</span>
-      <input value="<?php echo e($oldFormData["email"] ?? ""); ?>" name="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
+      <input value="<?php echo escape($oldFormData["email"] ?? ""); ?>" name="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
       <?php if (array_key_exists("email", $errors)): ?>
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["email"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -22,7 +22,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["password"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>

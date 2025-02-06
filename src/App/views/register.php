@@ -8,7 +8,7 @@
       <input
         name="email"
         type="email"
-        value="<?php echo e($oldFormData["email"] ?? ""); ?>"
+        value="<?php echo escape($oldFormData["email"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder="john@example.com"
       />
@@ -16,7 +16,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["email"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -28,7 +28,7 @@
       <input
         name="age"
         type="number"
-        value="<?php echo e($oldFormData["age"] ?? ""); ?>"
+        value="<?php echo escape($oldFormData["age"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
@@ -36,7 +36,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["age"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -50,26 +50,26 @@
         class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       >
         <option value="USA" 
-          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "USA" ? "selected" : "") : ""); ?>
+          <?php echo escape($oldFormData["country"] ?? false ? ($oldFormData["country"] === "USA" ? "selected" : "") : ""); ?>
         >USA</option>
 
         <option value="Canada" 
-          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Canada" ? "selected" : "") : ""); ?>
+          <?php echo escape($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Canada" ? "selected" : "") : ""); ?>
         >Canada</option>
 
         <option value="Mexico"
-          <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Mexico" ? "selected" : "") : ""); ?>
+          <?php echo escape($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Mexico" ? "selected" : "") : ""); ?>
         >Mexico</option>
 
         <option value="Invalid"
-            <?php echo e($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Invalid" ? "selected" : "") : ""); ?>
+            <?php echo escape($oldFormData["country"] ?? false ? ($oldFormData["country"] === "Invalid" ? "selected" : "") : ""); ?>
         >Invalid Country</option>
       </select>
       <?php if (array_key_exists("country", $errors)): ?>
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["country"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -81,7 +81,7 @@
       <input
         name="socialMediaUrl"
         type="text"
-        value="<?php echo e($oldFormData["socialMediaUrl"] ?? ""); ?>"
+        value="<?php echo escape($oldFormData["socialMediaUrl"] ?? ""); ?>"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
@@ -89,7 +89,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["socialMediaUrl"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -108,7 +108,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["password"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -127,7 +127,7 @@
         <div class="bg-gray-100 mt-2 p-2 text-red-500">
           <?php
             foreach ($errors["confirmPassword"] as $error) {
-                echo e($error) . "<br>";
+                echo escape($error) . "<br>";
             }
           ?>
         </div>
@@ -142,7 +142,7 @@
               name="tos"
               class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
               type="checkbox"
-              <?php echo e($oldFormData["tos"] ?? false ? "checked" : ""); ?>
+              <?php echo escape($oldFormData["tos"] ?? false ? "checked" : ""); ?>
             />
             <span class="ml-2">I accept the terms of service.</span>
           </label>
@@ -150,7 +150,7 @@
               <div class="bg-gray-100 mt-2 p-2 text-red-500">
                 <?php
                   foreach ($errors["tos"] as $error) {
-                      echo e($error) . "<br>";
+                      echo escape($error) . "<br>";
                   }
               ?>
               </div>

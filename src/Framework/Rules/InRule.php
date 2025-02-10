@@ -15,6 +15,6 @@ class InRule implements RuleInterface
 
     public function getMessage(array $data, string $field, array $params): string
     {
-        return "Invalid selection";
+        return "Invalid selection.";
     }
 }

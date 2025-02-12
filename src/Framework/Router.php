@@ -72,7 +72,6 @@ class Router
         $path = trim($path);
         $path = trim($path, "/");
         $path = "/{$path}/";
-        $path = preg_replace("#[/]{2,}#", "/", $path);
-        return $path;
+        return preg_replace("#/{2,}#", "/", $path);
     }
 }

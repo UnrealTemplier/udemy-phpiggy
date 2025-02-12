@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Services\UserService;
-use App\Services\FormValidationService;
+use App\Services\{FormValidationService, UserService};
 use Framework\TemplateEngine;
 
 class AuthController
@@ -14,7 +13,8 @@ class AuthController
         private TemplateEngine $view,
         private FormValidationService $formValidationService,
         private UserService $userService,
-    ) {}
+    ) {
+    }
 
     public function registerView(): void
     {
@@ -43,5 +43,11 @@ class AuthController
         $this->formValidationService->validateLogin($_POST);
         $this->userService->login($_POST);
         redirectTo("/");
+    }
+
+    public function logout(): void
+    {
+        $this->userService->logout();
+        redirectTo("/login");
     }
 }

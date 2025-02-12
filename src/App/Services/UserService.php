@@ -9,7 +9,9 @@ use Framework\Exceptions\ValidationException;
 
 class UserService
 {
-    public function __construct(private Database $db) {}
+    public function __construct(private Database $db)
+    {
+    }
 
     /**
      * Checks if provided email is already taken.
@@ -42,11 +44,11 @@ class UserService
             "INSERT INTO users(email, password, age, country, social_media_url)
             VALUES(:email, :password, :age, :country, :socialMediaUrl);",
             [
-                "email"             => $formData["email"],
-                "password"          => $password,
-                "age"               => $formData["age"],
-                "country"           => $formData["country"],
-                "socialMediaUrl"    => $formData["socialMediaUrl"],
+                "email" => $formData["email"],
+                "password" => $password,
+                "age" => $formData["age"],
+                "country" => $formData["country"],
+                "socialMediaUrl" => $formData["socialMediaUrl"],
             ],
         );
     }
@@ -66,5 +68,11 @@ class UserService
         session_regenerate_id();
 
         $_SESSION["user"] = $user["id"];
+    }
+
+    public function logout(): void
+    {
+        unset($_SESSION["user"]);
+        session_regenerate_id(true);
     }
 }

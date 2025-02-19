@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\FormValidator;
-use Framework\Rules\{EmailRule, InRule, MatchRule, MinRule, RequiredRule, UrlRule};
+use Framework\Rules\{EmailRule, InRule, MatchRule, RequiredRule, UrlRule, ValueMinRule};
 
 class FormValidationService
 {
@@ -16,7 +16,7 @@ class FormValidationService
         $this->formValidator = new FormValidator();
         $this->formValidator->addRule("required", new RequiredRule());
         $this->formValidator->addRule("email", new EmailRule());
-        $this->formValidator->addRule("min", new MinRule());
+        $this->formValidator->addRule("min", new ValueMinRule());
         $this->formValidator->addRule("in", new InRule());
         $this->formValidator->addRule("url", new UrlRule());
         $this->formValidator->addRule("match", new MatchRule());

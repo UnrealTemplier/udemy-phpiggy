@@ -4,42 +4,51 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Framework\Rules\{RequiredRule, EmailRule, InRule, MatchRule, MinRule, UrlRule};
 use Framework\FormValidator;
+use Framework\Rules\{EmailRule, InRule, MatchRule, MinRule, RequiredRule, UrlRule};
 
 class FormValidationService
 {
-    private FormValidator $validator;
+    private FormValidator $formValidator;
 
     public function __construct()
     {
-        $this->validator = new FormValidator();
-        $this->validator->addRule("required", new RequiredRule());
-        $this->validator->addRule("email", new EmailRule());
-        $this->validator->addRule("min", new MinRule());
-        $this->validator->addRule("in", new InRule());
-        $this->validator->addRule("url", new UrlRule());
-        $this->validator->addRule("match", new MatchRule());
+        $this->formValidator = new FormValidator();
+        $this->formValidator->addRule("required", new RequiredRule());
+        $this->formValidator->addRule("email", new EmailRule());
+        $this->formValidator->addRule("min", new MinRule());
+        $this->formValidator->addRule("in", new InRule());
+        $this->formValidator->addRule("url", new UrlRule());
+        $this->formValidator->addRule("match", new MatchRule());
     }
 
     public function validateRegister(array $formData): void
     {
-        $this->validator->validate($formData, [
-            "email"             => ["required", "email"],
-            "age"               => ["required", "min:18"],
-            "country"           => ["required", "in:USA,Canada,Mexico"],
-            "socialMediaUrl"    => ["required", "url"],
-            "password"          => ["required"],
-            "confirmPassword"   => ["required", "match:password"],
-            "tos"               => ["required"],
+        $this->formValidator->validate($formData, [
+            "email" => ["required", "email"],
+            "age" => ["required", "min:18"],
+            "country" => ["required", "in:USA,Canada,Mexico"],
+            "socialMediaUrl" => ["required", "url"],
+            "password" => ["required"],
+            "confirmPassword" => ["required", "match:password"],
+            "tos" => ["required"],
         ]);
     }
 
     public function validateLogin(array $formData): void
     {
-        $this->validator->validate($formData, [
-            "email"             => ["required", "email"],
-            "password"          => ["required"],
+        $this->formValidator->validate($formData, [
+            "email" => ["required", "email"],
+            "password" => ["required"],
+        ]);
+    }
+
+    public function validateTransaction(array $formData): void
+    {
+        $this->formValidator->validate($formData, [
+            "description" => ["required"],
+            "amount" => ["required"],
+            "date" => ["required"],
         ]);
     }
 }

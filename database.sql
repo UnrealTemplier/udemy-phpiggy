@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS phpiggy COLLATE utf8mb4_unicode_ci;
+
+USE phpiggy;
+
 CREATE TABLE IF NOT EXISTS users
 (
     id               BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,

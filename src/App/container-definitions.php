@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use App\Config\Paths;
-use App\Services\FormValidationService;
-use App\Services\UserService;
+use App\Services\{FormValidationService, TransactionService, UserService};
 use Framework\{Container, Database, TemplateEngine};
 
 return [
@@ -18,5 +17,9 @@ return [
     UserService::class => function (Container $container) {
         $db = $container->getDependency(Database::class);
         return new UserService($db);
+    },
+    TransactionService::class => function (Container $container) {
+        $db = $container->getDependency(Database::class);
+        return new TransactionService($db);
     },
 ];

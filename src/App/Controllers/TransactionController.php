@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Services\FormValidationService;
+use App\Services\{FormValidationService, TransactionService};
 use Framework\TemplateEngine;
 
 class TransactionController
@@ -12,6 +12,7 @@ class TransactionController
     public function __construct(
         private TemplateEngine $view,
         private FormValidationService $formValidationService,
+        private TransactionService $transactionService,
     ) {}
 
     public function createView(): void
@@ -22,5 +23,7 @@ class TransactionController
     public function create(): void
     {
         $this->formValidationService->validateTransaction($_POST);
+        $this->transactionService->create($_POST);
+        redirectTo("/");
     }
 }

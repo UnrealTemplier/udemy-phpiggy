@@ -48,11 +48,11 @@
         <tr>
           <!-- Description -->
           <td class="p-4 text-sm text-gray-600">
-              <?php echo $transaction["description"]; ?>
+              <?php echo escape($transaction["description"]); ?>
           </td>
           <!-- Amount -->
           <td class="p-4 text-sm text-gray-600">
-              <?php echo $transaction["amount"]; ?>
+              <?php echo escape($transaction["amount"]); ?>
           </td>
           <!-- Receipt List -->
           <td class="p-4 text-sm text-gray-600">
@@ -74,7 +74,7 @@
           </td>
           <!-- Date -->
           <td class="p-4 text-sm text-gray-600">
-              <?php echo $transaction["date"]; ?>
+              <?php echo escape($transaction["date"]); ?>
           </td>
           <!-- Actions -->
           <td class="p-4 text-sm text-gray-600 flex justify-center space-x-2">

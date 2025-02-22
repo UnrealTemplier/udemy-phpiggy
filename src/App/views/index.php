@@ -74,7 +74,7 @@
           </td>
           <!-- Date -->
           <td class="p-4 text-sm text-gray-600">
-              <?php echo escape($transaction["date"]); ?>
+              <?php echo escape($transaction["formatted_date"]); ?>
           </td>
           <!-- Actions -->
           <td class="p-4 text-sm text-gray-600 flex justify-center space-x-2">

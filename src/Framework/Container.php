@@ -41,11 +41,15 @@ class Container
             $paramType = $param->getType();
 
             if (!$paramType) {
-                throw new ContainerException("Failed to resolve class {$className} because parameter {$paramName} has no type hint.");
+                throw new ContainerException(
+                    "Failed to resolve class {$className} because parameter {$paramName} has no type hint.",
+                );
             }
 
             if (!($paramType instanceof ReflectionNamedType) || $paramType->isBuiltin()) {
-                throw new ContainerException("Failed to resolve class {$className} because parameter {$paramName} has invalid type.");
+                throw new ContainerException(
+                    "Failed to resolve class {$className} because parameter {$paramName} has invalid type.",
+                );
             }
 
             $dependencies[] = $this->getDependency($paramType->getName());

@@ -11,9 +11,8 @@ class TransactionController
 {
     public function __construct(
         private TemplateEngine $view,
-        private FormValidationService $formValidationService
-    ) {
-    }
+        private FormValidationService $formValidationService,
+    ) {}
 
     public function createView(): void
     {

@@ -33,15 +33,15 @@ class App
         return $this;
     }
 
+    public function add(string $middleware): void
+    {
+        $this->router->addRouteMiddleware($middleware);
+    }
+
     public function post(string $path, array $controller): App
     {
         $this->router->add("POST", $path, $controller);
         return $this;
-    }
-
-    public function add(string $middleware): void
-    {
-        $this->router->addRouteMiddleware($middleware);
     }
 
     public function addMiddleware(string $middleware): void

@@ -9,9 +9,7 @@ use Framework\Exceptions\ValidationException;
 
 class UserService
 {
-    public function __construct(private Database $db)
-    {
-    }
+    public function __construct(private Database $db) {}
 
     /**
      * Checks if provided email is already taken.

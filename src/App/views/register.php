@@ -1,8 +1,11 @@
-<?php include $this->resolve("partials/_header.php"); ?>
+<?php
+
+include $this->resolve("partials/_header.php"); ?>
 
 <section class="max-w-2xl mx-auto mt-12 p-4 bg-white shadow-md border border-gray-200 rounded">
   <form method="POST" class="grid grid-cols-1 gap-6">
-      <?php include $this->resolve("partials/_csrf.php"); ?>
+      <?php
+      include $this->resolve("partials/_csrf.php"); ?>
 
     <!-- Email -->
     <label class="block">
@@ -10,11 +13,13 @@
       <input
           name="email"
           type="email"
-          value="<?php echo escape($oldFormData["email"] ?? ""); ?>"
+          value="<?php
+          echo escape($oldFormData["email"] ?? ""); ?>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder="john@example.com"
       />
-        <?php if (array_key_exists("email", $errors)): ?>
+        <?php
+        if (array_key_exists("email", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["email"] as $error) {
@@ -22,7 +27,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Age -->
     <label class="block">
@@ -30,11 +36,13 @@
       <input
           name="age"
           type="number"
-          value="<?php echo escape($oldFormData["age"] ?? ""); ?>"
+          value="<?php
+          echo escape($oldFormData["age"] ?? ""); ?>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
       />
-        <?php if (array_key_exists("age", $errors)): ?>
+        <?php
+        if (array_key_exists("age", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["age"] as $error) {
@@ -42,7 +50,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Country -->
     <label class="block">
@@ -52,34 +61,39 @@
           class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       >
         <option value="USA"
-            <?php echo escape(
-                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "USA" ? "selected" : "") : ""
+            <?php
+            echo escape(
+                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "USA" ? "selected" : "") : "",
             ); ?>
         >USA
         </option>
 
         <option value="Canada"
-            <?php echo escape(
-                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Canada" ? "selected" : "") : ""
+            <?php
+            echo escape(
+                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Canada" ? "selected" : "") : "",
             ); ?>
         >Canada
         </option>
 
         <option value="Mexico"
-            <?php echo escape(
-                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Mexico" ? "selected" : "") : ""
+            <?php
+            echo escape(
+                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Mexico" ? "selected" : "") : "",
             ); ?>
         >Mexico
         </option>
 
         <option value="Invalid"
-            <?php echo escape(
-                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Invalid" ? "selected" : "") : ""
+            <?php
+            echo escape(
+                    $oldFormData["country"] ?? false ? ($oldFormData["country"] === "Invalid" ? "selected" : "") : "",
             ); ?>
         >Invalid Country
         </option>
       </select>
-        <?php if (array_key_exists("country", $errors)): ?>
+        <?php
+        if (array_key_exists("country", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["country"] as $error) {
@@ -87,7 +101,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Social Media URL -->
     <label class="block">
@@ -95,11 +110,13 @@
       <input
           name="socialMediaUrl"
           type="text"
-          value="<?php echo escape($oldFormData["socialMediaUrl"] ?? ""); ?>"
+          value="<?php
+          echo escape($oldFormData["socialMediaUrl"] ?? ""); ?>"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
       />
-        <?php if (array_key_exists("socialMediaUrl", $errors)): ?>
+        <?php
+        if (array_key_exists("socialMediaUrl", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["socialMediaUrl"] as $error) {
@@ -107,7 +124,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Password -->
     <label class="block">
@@ -118,7 +136,8 @@
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
       />
-        <?php if (array_key_exists("password", $errors)): ?>
+        <?php
+        if (array_key_exists("password", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["password"] as $error) {
@@ -126,7 +145,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Confirm Password -->
     <label class="block">
@@ -137,7 +157,8 @@
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
       />
-        <?php if (array_key_exists("confirmPassword", $errors)): ?>
+        <?php
+        if (array_key_exists("confirmPassword", $errors)): ?>
           <div class="bg-gray-100 mt-2 p-2 text-red-500">
               <?php
               foreach ($errors["confirmPassword"] as $error) {
@@ -145,7 +166,8 @@
               }
               ?>
           </div>
-        <?php endif; ?>
+        <?php
+        endif; ?>
     </label>
     <!-- Terms of Service -->
     <div class="block">
@@ -156,11 +178,13 @@
                 name="tos"
                 class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                 type="checkbox"
-                <?php echo escape($oldFormData["tos"] ?? false ? "checked" : ""); ?>
+                <?php
+                echo escape($oldFormData["tos"] ?? false ? "checked" : ""); ?>
             />
             <span class="ml-2">I accept the terms of service.</span>
           </label>
-            <?php if (array_key_exists("tos", $errors)): ?>
+            <?php
+            if (array_key_exists("tos", $errors)): ?>
               <div class="bg-gray-100 mt-2 p-2 text-red-500">
                   <?php
                   foreach ($errors["tos"] as $error) {
@@ -168,7 +192,8 @@
                   }
                   ?>
               </div>
-            <?php endif; ?>
+            <?php
+            endif; ?>
         </div>
       </div>
     </div>
@@ -181,4 +206,5 @@
   </form>
 </section>
 
-<?php include $this->resolve("partials/_footer.php"); ?>
+<?php
+include $this->resolve("partials/_footer.php"); ?>

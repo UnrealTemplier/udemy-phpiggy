@@ -9,9 +9,7 @@ use Framework\TemplateEngine;
 
 class CsrfTokenMiddleware implements MiddlewareInterface
 {
-    public function __construct(private TemplateEngine $view)
-    {
-    }
+    public function __construct(private TemplateEngine $view) {}
 
     public function process(callable $next): void
     {

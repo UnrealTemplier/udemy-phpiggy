@@ -12,7 +12,7 @@ function dump_die(mixed $value): void
 
 function escape(mixed $value): string
 {
-    return htmlspecialchars((string) $value);
+    return htmlspecialchars((string)$value);
 }
 
 function redirectTo(string $path): void

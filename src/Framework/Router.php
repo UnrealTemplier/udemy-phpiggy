@@ -17,8 +17,16 @@ class Router
             "path" => $path,
             "method" => strtoupper($method),
             "controller" => $controller,
-            "middlewares" => []
+            "middlewares" => [],
         ];
+    }
+
+    private function normalizePath(string $path): string
+    {
+        $path = trim($path);
+        $path = trim($path, "/");
+        $path = "/{$path}/";
+        return preg_replace("#/{2,}#", "/", $path);
     }
 
     public function dispatch(string $path, string $method, Container $container = null): void
@@ -65,13 +73,5 @@ class Router
     {
         $lastRouteKey = array_key_last($this->routes);
         $this->routes[$lastRouteKey]["middlewares"][] = $middleware;
-    }
-
-    private function normalizePath(string $path): string
-    {
-        $path = trim($path);
-        $path = trim($path, "/");
-        $path = "/{$path}/";
-        return preg_replace("#/{2,}#", "/", $path);
     }
 }

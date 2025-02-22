@@ -44,6 +44,11 @@ class Database
         return $this->stmt->fetch();
     }
 
+    public function findAll(): mixed
+    {
+        return $this->stmt->fetchAll();
+    }
+
     public function id(): false|string
     {
         return $this->connection->lastInsertId();

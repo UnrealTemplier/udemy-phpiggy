@@ -1,6 +1,4 @@
-<?php
-
-include $this->resolve("partials/_header.php"); ?>
+<?php include $this->resolve("partials/_header.php"); ?>
 
   <!-- Start Main Content Area -->
   <section
@@ -15,5 +13,4 @@ include $this->resolve("partials/_header.php"); ?>
   </section>
   <!-- End Main Content Area -->
 
-<?php
-include $this->resolve("partials/_footer.php"); ?>
+<?php include $this->resolve("partials/_footer.php"); ?>

@@ -26,7 +26,7 @@ class TransactionService
         );
     }
 
-    public function getUserTransactions(): array
+    public function getUserTransactions(int $limit, int $offset): array
     {
         $searchTerm = addcslashes($_GET["s"] ?? "", "%_");
 
@@ -34,10 +34,11 @@ class TransactionService
             "SELECT *, DATE_FORMAT(date, '%Y-%m-%d') AS formatted_date
              FROM transactions 
              WHERE user_id = :user_id
-             AND description LIKE :description",
+             AND description LIKE :description
+             LIMIT $limit OFFSET $offset;",
             [
-                'user_id' => $_SESSION['user'],
-                'description' => "%{$searchTerm}%",
+                "user_id" => $_SESSION["user"],
+                "description" => "%{$searchTerm}%",
             ],
         )->findAll();
     }

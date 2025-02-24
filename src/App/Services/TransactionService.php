@@ -12,16 +12,16 @@ class TransactionService
 
     public function create(array $formData): void
     {
-        $formattedDate = "{$formData['date']} 00:00:00";
+        $formattedDate = "{$formData["date"]} 00:00:00";
 
         $this->db->query(
             "INSERT INTO transactions(user_id, description, amount, date) 
              VALUES(:user_id, :description, :amount, :date)",
             [
-                'user_id' => $_SESSION['user'],
-                'description' => $formData['description'],
-                'amount' => $formData['amount'],
-                'date' => $formattedDate,
+                "user_id" => $_SESSION["user"],
+                "description" => $formData["description"],
+                "amount" => $formData["amount"],
+                "date" => $formattedDate,
             ],
         );
     }
@@ -61,8 +61,8 @@ class TransactionService
              FROM transactions
              WHERE user_id = :user_id AND id = :id",
             [
-                'user_id' => $_SESSION['user'],
-                'id' => $id,
+                "user_id" => $_SESSION["user"],
+                "id" => $id,
             ],
         )->find();
     }
@@ -78,11 +78,11 @@ class TransactionService
                  date = :date
              WHERE user_id = :user_id AND id = :id",
             [
-                'user_id' => $_SESSION['user'],
-                'id' => $id,
-                'description' => $formData['description'],
-                'amount' => $formData['amount'],
-                'date' => $formattedDate,
+                "user_id" => $_SESSION["user"],
+                "id" => $id,
+                "description" => $formData["description"],
+                "amount" => $formData["amount"],
+                "date" => $formattedDate,
             ],
         );
     }

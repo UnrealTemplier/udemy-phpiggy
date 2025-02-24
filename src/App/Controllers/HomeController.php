@@ -17,19 +17,26 @@ class HomeController
     public function home(): void
     {
         $limit = 3;
-        $page = (int)($_GET["p"] ?? 1);
-        $offset = ($page - 1) * $limit;
-        $searchTerm = $_GET["s"] ?? null;
-        $previousPageQuery = http_build_query(["p" => $page - 1, "s" => $searchTerm]);
+        $currentPage = (int)($_GET["p"] ?? 1);
+        $offset = ($currentPage - 1) * $limit;
 
-        $transactions = $this->transactionService->getUserTransactions($limit, $offset);
+        $searchTerm = $_GET["s"] ?? null;
+
+        $previousPageQuery = http_build_query(["p" => $currentPage - 1, "s" => $searchTerm]);
+        $nextPageQuery = http_build_query(["p" => $currentPage + 1, "s" => $searchTerm]);
+
+        [$transactions, $count] = $this->transactionService->getUserTransactions($limit, $offset);
+
+        $lastPage = ceil($count / $limit);
 
         echo $this->view->render(
             "index.php",
             [
                 "transactions" => $transactions,
-                "currentPage" => $page,
+                "currentPage" => $currentPage,
+                "lastPage" => $lastPage,
                 "previousPageQuery" => $previousPageQuery,
+                "nextPageQuery" => $nextPageQuery,
             ],
         );
     }

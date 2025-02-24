@@ -28,6 +28,12 @@ class HomeController
         [$transactions, $count] = $this->transactionService->getUserTransactions($limit, $offset);
 
         $lastPage = ceil($count / $limit);
+        $pages = $lastPage ? range(1, $lastPage) : [];
+
+        $pagesLinks = array_map(
+            fn($pageNum) => http_build_query(["p" => $pageNum, "s" => $searchTerm]),
+            $pages,
+        );
 
         echo $this->view->render(
             "index.php",
@@ -37,6 +43,8 @@ class HomeController
                 "lastPage" => $lastPage,
                 "previousPageQuery" => $previousPageQuery,
                 "nextPageQuery" => $nextPageQuery,
+                "pagesLinks" => $pagesLinks,
+                "searchTerm" => $searchTerm,
             ],
         );
     }

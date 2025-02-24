@@ -17,7 +17,11 @@
     <!-- Search Form -->
     <form method="GET" class="mt-4 w-full">
       <div class="flex">
-        <input name="s" type="text" class="w-full rounded-l-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Enter search term"/>
+        <input
+            value="<?php echo escape($searchTerm); ?>"
+            name="s"
+            type="text"
+            class="w-full rounded-l-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Enter search term"/>
         <button type="submit" class="rounded-r-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           Search
         </button>
@@ -113,11 +117,20 @@
             </a>
           <?php endif; ?>
       </div>
-      <!-- Pages Link -->
+      <!-- Pages Links -->
       <div class="hidden md:-mt-px md:flex">
-        <a href="/" class="inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium">
-          1
-        </a>
+          <?php foreach ($pagesLinks as $pageNum => $pageQuery): ?>
+            <a href="/?<?php echo escape($pageQuery); ?>"
+               class="
+               <?php if ($pageNum + 1 === $currentPage) {
+                   echo "border-indigo-500 text-indigo-600 ";
+               } else {
+                   echo "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 ";
+               } ?>
+               inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium">
+                <?php echo escape($pageNum + 1); ?>
+            </a>
+          <?php endforeach; ?>
         <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
       </div>
       <!-- Next Page Link -->

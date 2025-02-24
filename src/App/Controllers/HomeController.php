@@ -19,12 +19,17 @@ class HomeController
         $limit = 3;
         $page = (int)($_GET["p"] ?? 1);
         $offset = ($page - 1) * $limit;
+        $searchTerm = $_GET["s"] ?? null;
+        $previousPageQuery = http_build_query(["p" => $page - 1, "s" => $searchTerm]);
 
         $transactions = $this->transactionService->getUserTransactions($limit, $offset);
+
         echo $this->view->render(
             "index.php",
             [
                 "transactions" => $transactions,
+                "currentPage" => $page,
+                "previousPageQuery" => $previousPageQuery,
             ],
         );
     }

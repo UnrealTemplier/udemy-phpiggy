@@ -43,4 +43,12 @@ function registerRoutes(App $app): void
     $app
         ->post("/transaction", [TransactionController::class, "create"])
         ->add(AuthRequiredMiddleware::class);
+
+    $app
+        ->get("/transaction/{id}", [TransactionController::class, "editView"])
+        ->add(AuthRequiredMiddleware::class);
+
+    $app
+        ->post("/transaction/{id}", [TransactionController::class, "edit"])
+        ->add(AuthRequiredMiddleware::class);
 }

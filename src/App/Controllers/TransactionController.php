@@ -55,4 +55,16 @@ class TransactionController
         $this->transactionService->update((int)$params["id"], $_POST);
         redirectTo($_SERVER["HTTP_REFERER"]);
     }
+
+    public function delete(array $params): void
+    {
+        $transaction = $this->transactionService->getUserTransaction((int)$params["id"]);
+
+        if (!$transaction) {
+            redirectTo("/");
+        }
+
+        $this->transactionService->delete((int)$params["id"]);
+        redirectTo("/");
+    }
 }

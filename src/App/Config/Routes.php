@@ -51,4 +51,8 @@ function registerRoutes(App $app): void
     $app
         ->post("/transaction/{id}", [TransactionController::class, "edit"])
         ->add(AuthRequiredMiddleware::class);
+
+    $app
+        ->delete("/transaction/{id}", [TransactionController::class, "delete"])
+        ->add(AuthRequiredMiddleware::class);
 }

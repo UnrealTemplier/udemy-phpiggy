@@ -75,6 +75,17 @@ class TransactionService
         )->find();
     }
 
+    public function validateUserTransaction(int $id): mixed
+    {
+        $transaction = $this->getUserTransaction($id);
+
+        if (!$transaction) {
+            redirectTo("/");
+        }
+
+        return $transaction;
+    }
+
     public function update(int $id, array $formData): void
     {
         $formattedDate = "{$formData["date"]} 00:00:00";

@@ -29,11 +29,7 @@ class TransactionController
 
     public function editView(array $params): void
     {
-        $transaction = $this->transactionService->getUserTransaction((int)$params["id"]);
-
-        if (!$transaction) {
-            redirectTo("/");
-        }
+        $transaction = $this->transactionService->validateUserTransaction((int)$params["id"]);
 
         echo $this->view->render(
             "transactions/edit.php",
@@ -45,26 +41,20 @@ class TransactionController
 
     public function edit(array $params): void
     {
-        $transaction = $this->transactionService->getUserTransaction((int)$params["id"]);
-
-        if (!$transaction) {
-            redirectTo("/");
-        }
+        $id = (int)$params["id"];
+        $this->transactionService->validateUserTransaction($id);
 
         $this->formValidationService->validateTransaction($_POST);
-        $this->transactionService->update((int)$params["id"], $_POST);
+        $this->transactionService->update($id, $_POST);
         redirectTo($_SERVER["HTTP_REFERER"]);
     }
 
     public function delete(array $params): void
     {
-        $transaction = $this->transactionService->getUserTransaction((int)$params["id"]);
+        $id = (int)$params["id"];
+        $this->transactionService->validateUserTransaction($id);
 
-        if (!$transaction) {
-            redirectTo("/");
-        }
-
-        $this->transactionService->delete((int)$params["id"]);
+        $this->transactionService->delete($id);
         redirectTo("/");
     }
 }

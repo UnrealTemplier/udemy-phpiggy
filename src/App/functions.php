@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Framework\Http;
+
 function dump_die(mixed $value): void
 {
     echo "<pre>";
@@ -18,6 +20,6 @@ function escape(mixed $value): string
 function redirectTo(string $path): void
 {
     header("Location: {$path}");
-    http_response_code(302);
+    http_response_code(Http::STATUS_REDIRECT);
     exit();
 }

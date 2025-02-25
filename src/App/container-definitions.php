@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Config\Paths;
-use App\Services\{FormValidationService, TransactionService, UserService};
+use App\Services\{FormValidationService, ReceiptService, TransactionService, UserService};
 use Framework\{Container, Database, TemplateEngine};
 
 return [
@@ -21,5 +21,9 @@ return [
     TransactionService::class => function (Container $container) {
         $db = $container->getDependency(Database::class);
         return new TransactionService($db);
+    },
+    ReceiptService::class => function (Container $container) {
+        $db = $container->getDependency(Database::class);
+        return new ReceiptService($db);
     },
 ];

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Config\Paths;
 use Framework\Database;
 
 class TransactionService
@@ -108,6 +109,19 @@ class TransactionService
 
     public function delete(int $id): void
     {
+        $receiptsFilenames = $this->db->query(
+            "SELECT storage_filename
+             FROM receipts
+             WHERE transaction_id = :transaction_id",
+            ["transaction_id" => $id],
+        )->findAll();
+
+        foreach ($receiptsFilenames as $filename) {
+            $storageFilename = $filename["storage_filename"];
+            $filePath = Paths::STORAGE_UPLOADS . "/" . $storageFilename;
+            unlink($filePath);
+        }
+
         $this->db->query(
             "DELETE FROM transactions 
              WHERE user_id = :user_id AND id = :id",

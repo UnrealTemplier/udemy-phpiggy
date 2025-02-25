@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\Config;
 
-use App\Controllers\{AboutController, AuthController, HomeController, ReceiptController, TransactionController};
+use App\Controllers\{AboutController,
+    AuthController,
+    ErrorController,
+    HomeController,
+    ReceiptController,
+    TransactionController};
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 use Framework\App;
 
@@ -71,4 +76,6 @@ function registerRoutes(App $app): void
     $app
         ->delete("/transaction/{transaction}/receipt/{receipt}", [ReceiptController::class, "delete"])
         ->add(AuthRequiredMiddleware::class);
+
+    $app->setErrorHandler([ErrorController::class, "notFound"]);
 }
